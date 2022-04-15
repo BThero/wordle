@@ -39,6 +39,7 @@ const Main = () => {
     if (res === 'rrrrr') {
       alert('Congrats! You won the game');
       setSecret(null);
+      return;
     }
 
     let newKeyboard = keyboard.split('');
