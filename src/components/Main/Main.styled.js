@@ -5,11 +5,13 @@ const Main = styled.main`
   flex-direction: column;
   align-items: center;
   background-color: black;
-  height: 100%;
+  flex: 1;
 `;
 
 const KeyboardWrapper = styled.div`
-  display: flex;
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
 `;
 
 const Button = styled.button`
@@ -24,4 +26,9 @@ const Button = styled.button`
   }
 `
 
-export {Main, KeyboardWrapper, Button};
+const Buttons = styled.div`
+  margin-top: 3rem;
+  display: flex;
+`
+
+export {Main, KeyboardWrapper, Button, Buttons};

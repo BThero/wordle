@@ -1,14 +1,33 @@
 import React, { useState, useEffect } from "react";
-import Cell from './Cell';
+import Cell from '../Cell';
 import { Div } from "./Field.styled";
+
+function createEmptyArray(n) {
+  let res = [];
+
+  for (let i = 0; i < n; i++) {
+    res.push('');
+  }
+
+  return res;
+}
 
 const wordLimit = 6;
 const wordLength = 5;
+const emptyArray = createEmptyArray(wordLimit);
 
-const Field = ({onSubmit, onLose}) => {
-  const [guesses, setGuesses] = useState(['', '', '', '', '', '']);
-  const [responses, setResponses] = useState(['', '', '', '', '', '']);
+const Field = ({onSubmit, onLose, reset}) => {
+  const [guesses, setGuesses] = useState(emptyArray);
+  const [responses, setResponses] = useState(emptyArray);
   const [row, setRow] = useState(0);
+
+  useEffect(() => {
+    if (reset) {
+      setGuesses(emptyArray);
+      setResponses(emptyArray);
+      setRow(0);
+    }
+  }, [reset]);
 
   useEffect(() => {
     const eventListener = async (e) => {
@@ -29,7 +48,7 @@ const Field = ({onSubmit, onLose}) => {
             t[row] = res;
             setResponses(t);
 
-            if (res !== 'iiiii') {
+            if (res !== 'rrrrr') {
               if (row + 1 < wordLimit) {
                 setRow(row + 1);
               }
